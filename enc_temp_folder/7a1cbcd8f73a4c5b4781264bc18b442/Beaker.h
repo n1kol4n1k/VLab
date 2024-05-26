@@ -13,7 +13,4 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void SetProcMesh(class UProceduralMeshComponent* in);
-
-	UFUNCTION(BlueprintCallable)
-	void CutProcMesh(float perc);
 };

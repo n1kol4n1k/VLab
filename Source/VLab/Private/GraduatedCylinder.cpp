@@ -3,3 +3,8 @@
 
 #include "GraduatedCylinder.h"
 
+void AGraduatedCylinder::OnClick()
+{
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Grad. Cyl. is clicked!");
+}

@@ -13,5 +13,6 @@ UCLASS()
 class VLAB_API AGraduatedCylinder : public AGlassware
 {
 	GENERATED_BODY()
-	
+protected:
+	virtual void OnClick() override;
 };

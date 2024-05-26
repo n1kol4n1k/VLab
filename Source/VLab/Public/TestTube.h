@@ -8,5 +8,6 @@ UCLASS()
 class VLAB_API ATestTube : public AGlassware
 {
 	GENERATED_BODY()
-	
+protected:
+	virtual void OnClick() override;
 };

@@ -12,6 +12,12 @@ void AErlenmeyerFlask::BeginPlay()
 	}
 }
 
+void AErlenmeyerFlask::OnClick()
+{
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Erl. Flask is clicked!");
+}
+
 void AErlenmeyerFlask::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
