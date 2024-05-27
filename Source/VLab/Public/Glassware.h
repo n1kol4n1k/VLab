@@ -21,9 +21,16 @@ protected:
 	class UProceduralMeshComponent* mEditableFillMesh = nullptr;
 
 	UFUNCTION(BlueprintCallable)
-	void SetStaticMeshComponents(UStaticMeshComponent* inContainer, UStaticMeshComponent* inFill);
-
+	void SetStaticMeshComponents(UStaticMeshComponent* inContainer, UStaticMeshComponent* inFill, class UProceduralMeshComponent* inProceduralFill);
+	
+	UFUNCTION(BlueprintCallable)
 	void SetFillPercentage(float inFillPercengate);
+
+	//DEBUG
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", ClampMax = "100", UIMin = "0", UIMax = "100"))
+	int mDebugFillPercentage = 0;
+
+	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& e) override;
 
 private:
 	float mFillPercentage = 1.0f;

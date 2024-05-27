@@ -11,9 +11,4 @@ class VLAB_API ABeaker : public AGlassware
 protected:
 	virtual void OnClick() override;
 
-	UFUNCTION(BlueprintCallable)
-	void SetProcMesh(class UProceduralMeshComponent* in);
-
-	UFUNCTION(BlueprintCallable)
-	void CutProcMesh(float perc);
 };
