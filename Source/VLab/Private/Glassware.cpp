@@ -2,6 +2,57 @@
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
 
+void AGlassware::BeginPlay()
+{
+	Super::BeginPlay();
+	SetActorTickEnabled(mIsDragging);
+	mPlayerController = GetWorld()->GetFirstPlayerController();
+}
+
+void AGlassware::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+	if (mIsDragging)
+	{
+		static FVector MouseDirectionInWorld;
+		mPlayerController->DeprojectMousePositionToWorld(mMousePositionInWorld, MouseDirectionInWorld);
+		SetActorLocation({ mInitialLocation.X - 15, mMousePositionInWorld.Y, mMousePositionInWorld.Z });
+	}
+}
+
+void AGlassware::NotifyActorOnClicked(FKey ButtonPressed)
+{
+	static constexpr float TimerDuration = 2.f;
+
+	GetWorldTimerManager().SetTimer(RegisterDragTimerHandle, FTimerDelegate::CreateLambda([this]()
+		{
+			mIsDragging = true;
+			SetActorTickEnabled(mIsDragging);
+
+			mInitialLocation = GetActorLocation();
+			//AddActorWorldOffset({ -15, 0, 5 });
+		}), TimerDuration, false);
+}
+
+void AGlassware::NotifyActorOnReleased(FKey ButtonPressed)
+{
+	GetWorldTimerManager().ClearTimer(RegisterDragTimerHandle);
+
+	if (mIsDragging)
+	{
+		SetActorLocation(mInitialLocation);
+	}
+
+	mIsDragging = false;
+	SetActorTickEnabled(mIsDragging);
+}
+
+void AGlassware::NotifyActorEndCursorOver()
+{
+	GetWorldTimerManager().ClearTimer(RegisterDragTimerHandle);
+}
+
 void AGlassware::SetStaticMeshComponents(UStaticMeshComponent* inContainer, UStaticMeshComponent* inFill, UProceduralMeshComponent* inProceduralFill)
 {
 	if (IsValid(inContainer) && IsValid(inFill))
@@ -55,3 +106,4 @@ void AGlassware::PostEditChangeProperty(FPropertyChangedEvent& e)
 	}
 	Super::PostEditChangeProperty(e);
 }
+

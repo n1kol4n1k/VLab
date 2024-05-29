@@ -1,8 +1,8 @@
 #include "Beaker.h"
 #include "KismetProceduralMeshLibrary.h"
 
-void ABeaker::OnClick()
+void ABeaker::NotifyActorOnClicked(FKey ButtonPressed)
 {
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Beaker is clicked!");
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Freaker is clicked!");
 }

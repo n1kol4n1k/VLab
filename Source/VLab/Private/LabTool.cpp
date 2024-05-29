@@ -12,9 +12,6 @@ ALabTool::ALabTool()
 void ALabTool::BeginPlay()
 {
 	Super::BeginPlay();
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "HELLOoo!");
-	
 }
 
 void ALabTool::Tick(float DeltaTime)

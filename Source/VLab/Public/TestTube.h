@@ -9,5 +9,6 @@ class VLAB_API ATestTube : public AGlassware
 {
 	GENERATED_BODY()
 protected:
-	virtual void OnClick() override;
+	virtual void NotifyActorOnClicked(FKey ButtonPressed = EKeys::LeftMouseButton) override;
+
 };

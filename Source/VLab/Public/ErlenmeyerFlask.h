@@ -9,9 +9,7 @@ class VLAB_API AErlenmeyerFlask : public AGlassware
 {
 	GENERATED_BODY()
 protected:
-	virtual void BeginPlay() override;
-	virtual void OnClick() override;
+	virtual void NotifyActorOnClicked(FKey ButtonPressed = EKeys::LeftMouseButton) override;
 
 public:
-	virtual void Tick(float DeltaTime) override;
 };
