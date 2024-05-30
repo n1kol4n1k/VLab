@@ -15,9 +15,16 @@ void AGlassware::Tick(float DeltaTime)
 	
 	if (mIsDragging)
 	{
-		static FVector MouseDirectionInWorld;
-		mPlayerController->DeprojectMousePositionToWorld(mMousePositionInWorld, MouseDirectionInWorld);
-		SetActorLocation({ mInitialLocation.X - 15, mMousePositionInWorld.Y, mMousePositionInWorld.Z });
+		static FVector MousePosition;
+		static FVector MouseDirection;
+		mPlayerController->DeprojectMousePositionToWorld(MousePosition, MouseDirection);
+	
+		FVector newLocation = FMath::LinePlaneIntersection(MousePosition,
+			MousePosition + (MouseDirection * 5000),
+			mInitialLocation + FVector{0, 0, 20},
+			GetActorUpVector());
+
+		SetActorLocation(newLocation);
 	}
 }
 

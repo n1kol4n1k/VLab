@@ -98,3 +98,4 @@ Content/AdvancedGlassPack/*
 Content/LPGenericPropsSet10/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unrealengine
+enc_temp_folder/

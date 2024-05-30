@@ -32,7 +32,6 @@ private:
 	bool mIsDragging = false;
 
 	FTimerHandle RegisterDragTimerHandle;
-	FVector mMousePositionInWorld{};
 
 	FVector mInitialLocation{};
 
