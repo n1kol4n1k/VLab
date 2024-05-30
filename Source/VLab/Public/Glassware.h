@@ -18,6 +18,8 @@ public:
 	virtual void NotifyActorEndCursorOver() override;
 
 private:
+	void HandleDropInteraction();
+
 	UPROPERTY(Transient)
 	UStaticMeshComponent* mContainerMesh = nullptr;
 

@@ -30,7 +30,7 @@ void AGlassware::Tick(float DeltaTime)
 
 void AGlassware::NotifyActorOnClicked(FKey ButtonPressed)
 {
-	static constexpr float TimerDuration = 2.f;
+	static constexpr float TimerDuration = 1.f;
 
 	GetWorldTimerManager().SetTimer(RegisterDragTimerHandle, FTimerDelegate::CreateLambda([this]()
 		{
@@ -53,11 +53,33 @@ void AGlassware::NotifyActorOnReleased(FKey ButtonPressed)
 
 	mIsDragging = false;
 	SetActorTickEnabled(mIsDragging);
+
+	HandleDropInteraction();
 }
 
 void AGlassware::NotifyActorEndCursorOver()
 {
 	GetWorldTimerManager().ClearTimer(RegisterDragTimerHandle);
+
+	//if (mIsDragging)
+	//{
+	//	SetActorLocation(mInitialLocation);
+	//}
+
+	//mIsDragging = false;
+	//SetActorTickEnabled(mIsDragging);
+}
+
+void AGlassware::HandleDropInteraction()
+{
+	TSet<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors, AActor::StaticClass());
+	if (OverlappingActors.Num() == 0)
+	{
+		return;
+	}
+
+	SetFillPercentage(mFillPercentage - 10);
 }
 
 void AGlassware::SetStaticMeshComponents(UStaticMeshComponent* inContainer, UStaticMeshComponent* inFill, UProceduralMeshComponent* inProceduralFill)
