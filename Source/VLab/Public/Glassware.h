@@ -17,6 +17,8 @@ public:
 	virtual void NotifyActorOnReleased(FKey ButtonPressed = EKeys::LeftMouseButton) override;
 	virtual void NotifyActorEndCursorOver() override;
 
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
 private:
 	void HandleDropInteraction();
 

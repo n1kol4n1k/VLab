@@ -70,6 +70,12 @@ void AGlassware::NotifyActorEndCursorOver()
 	//SetActorTickEnabled(mIsDragging);
 }
 
+void AGlassware::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "Overlap");
+}
+
 void AGlassware::HandleDropInteraction()
 {
 	TSet<AActor*> OverlappingActors;
